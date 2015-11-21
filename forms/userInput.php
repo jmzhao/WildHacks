@@ -5,6 +5,7 @@
     <!--Misc style sheets included here-->
     <link rel="stylesheet" type="text/css" href="../css/userInput.css">
     <!--Misc javascript sheets included here-->
+    <script language="JavaScript" src="scriptcam.js"></script>
     <script src="../javascript/userInput.js"></script>
 	</head>
 	<body>

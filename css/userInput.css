@@ -5,4 +5,20 @@ form#main-user-form{
 
 input#cameraButton{
   background: url('../images/camera.png');
+  width: 40%;
+  padding: 2%;
+  height: 120px;
+}
+
+div#product{
+  float: left;
+}
+
+input#productDescription{
+  width: 40%;
+  height: 120px;
+}
+
+.clear{
+  clear: both;
 }
