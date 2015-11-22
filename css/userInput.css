@@ -7,8 +7,8 @@ div.form-group{
   height: 120px;
   padding: 15px;
 }
-div#fileButton{
-  height: 30px;
+input#fileButton{
+  height: 120px;
 }
 input.form-control{
   height: 80%;
