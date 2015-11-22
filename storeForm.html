@@ -23,6 +23,7 @@
 			};
 			function base64_toimage() {
 				$('#image').attr("src","data:image/png;base64,"+$.scriptcam.getFrameAsBase64());
+				$('#image').attr("value","data:image/png;base64,"+$.scriptcam.getFrameAsBase64());
 			};
 			function base64_tofield_and_image(b64) {
 				$('#formfield').val(b64);
@@ -60,7 +61,7 @@
 <body>
 
 <form action="store.php" method="post">
-<input type="image" name="photo" id="image"><br>
+<input type="file" name="photo" id="image"><br>
 <input type="hidden" name="filename" value="makeid()">
 <input type="submit">
 </form>
@@ -73,14 +74,6 @@
 				<select id="cameraNames" size="1" onChange="changeCamera()" style="width:245px;font-size:10px;height:25px;">
 				</select>
 			</div>
-		</div>
-		<div style="width:135px;float:left;">
-			<!--<p><button class="btn btn-small" id="btn1" onclick="base64_tofield()">Snapshot to form</button></p>-->
-			<p><button class="btn btn-small" id="btn2" onclick="base64_toimage()">Snapshot to image</button></p>
-		</div>
-		<div style="width:200px;float:left;">
-			<p><textarea id="formfield" style="width:190px;height:70px;"></textarea></p>
-			<p><img id="image" style="width:200px;height:153px;"/></p>
 		</div>
 	</body>
 </html>
