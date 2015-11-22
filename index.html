@@ -79,13 +79,7 @@ var settings = {
   "async": true,
   "crossDomain": true,
   "url": "https://free-mium.search.windows.net/indexes/events/docs?api-version=2015-02-28&search=*&$filter=geo.distance(location, geography'POINT(" + pos.lat + " " + pos.lng + ")')+le+1",
-  "method": "GET",
-  "headers": {
-    "api-key": "3B3CABA50386E2B6502A4A8D95328417",
-    "content-type": "application/json; charset=utf-8",
-    "cache-control": "no-cache",
-    "postman-token": "f92c1e26-9ce1-f6f9-6026-f846ec87d04f"
-  }
+  "method": "GET"
 }
 
 $.ajax(settings).done(function (response) {
@@ -136,7 +130,7 @@ function toggleBounce() {
 		}
 
 		function getCurrentPosition (map) {
-			var currentPosition = {};
+			var currentPosition = {lat: 0, lng:0};
 				// Try HTML5 geolocation.
 				var infoWindow = new google.maps.InfoWindow({map: map});
 		  if (navigator.geolocation) {
