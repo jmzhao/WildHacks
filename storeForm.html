@@ -4,7 +4,7 @@
 	<head>
 		<script language="JavaScript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script language="JavaScript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-		<script language="JavaScript" src="scriptcam.js"></script>
+		<script language="JavaScript" src="javascript/scriptcam/scriptcam.js"></script>
 		<script language="JavaScript"> 
 			$(document).ready(function() {
 				$("#webcam").scriptcam({
@@ -14,7 +14,7 @@
 					disableHardwareAcceleration:1,
 					cornerColor:'e3e5e2',
 					onWebcamReady:onWebcamReady,
-					uploadImage:'upload.gif',
+					uploadImage:'javascript/scriptcam/upload.gif',
 					onPictureAsBase64:base64_tofield_and_image
 				});
 			});
@@ -69,7 +69,7 @@
 			<div id="webcam">
 			</div>
 			<div style="margin:5px;">
-				<img src="webcamlogo.png" style="vertical-align:text-top"/>
+				<img src="javascript/scriptcam/webcamlogo.png" style="vertical-align:text-top"/>
 				<select id="cameraNames" size="1" onChange="changeCamera()" style="width:245px;font-size:10px;height:25px;">
 				</select>
 			</div>
