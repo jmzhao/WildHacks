@@ -6,15 +6,34 @@
     <link rel="stylesheet" type="text/css" href="../css/userInput.css">
 	</head>
 	<body class="container">
-		<form id="main-user-form">
-      <div class="form-group" id="product">
-        <image src="../images/camera.png" >
+    <h2>Free Stuff Upload</h2>
+		<form id="main-user-form" action="userInput.php">
+      <!--<div class="form-group" id="product">
+        <input type="image" src="../images/camera.png" alt="Camera Upload" id="cameraButton" />
         <label for="productdescription">Product Description</label>
         <br/>
         <input type="text" id="productDescription" />
+      </div>-->
+      <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" placeholder="Name">
       </div>
-      <div class="clear"></div>
-      
+      <div class="form-group" id="fileButton">
+        <input id="filebutton" name="filebutton" class="input-file" type="file">
+      </div>
+      <div class="form-group">
+        <label for="ProductDescription">Product Description</label>
+        <input type="text" class="form-control" id="productDescription" placeholder="Product Description">
+      </div>
+      <div class="form-group">
+        <label for="Address">Address</label>
+        <input type="text" class="form-control" id="Address" placeholder="Address">
+      </div>
+      <div class="form-group">
+        <label for="AdditionalNotes">Additional Notes</label>
+        <input type="text" class="form-control" id="AdditionalNotes" placeholder="Additional Notes">
+      </div>
+      <input type="submit" value="Submit" />
     </form>
 	</body>
 </html>
