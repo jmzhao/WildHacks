@@ -101,6 +101,7 @@
 //   return false;
 //   }
 function upload(){
+  alert("coming in");
     $('#fileupload').fileupload({
         dataType: 'json',
         done: function (e, data) {
