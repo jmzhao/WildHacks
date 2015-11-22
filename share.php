@@ -67,7 +67,7 @@
       </div>
       <div class="large-6 columns">
       <input id="fileupload" type="file" name="files[]" data-url="store.php" multiple>
-      <a href="/" class="button success" onclick="upload">Upload</a>
+      <input type="button" class="button success" onclick="upload" value="Upload">
       </div>  
     </div>
 </div>
