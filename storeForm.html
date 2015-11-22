@@ -2,10 +2,13 @@
 <html>
 
 	<head>
-		<script language="JavaScript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script language="JavaScript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-		<script language="JavaScript" src="javascript/scriptcam/scriptcam.js"></script>
-		<script language="JavaScript"> 
+	<script type="text/javascript"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+		<script type="text/javascript" src="javascript/scriptcam/scriptcam.js"></script>
+		<script type="text/javascript" src="javascript/FileSaver.js"></script>
+		<script type="text/javascript" src="javascript/Blob.js"></script>
+		<script type="text/javascript"> 
 			$(document).ready(function() {
 				$("#webcam").scriptcam({
 					showMicrophoneErrors:false,
@@ -54,6 +57,23 @@
 			
 				return text;
 			}
+			function upload() {
+				alert("coming in upload");
+				var a = document.createElement('img');
+				a.name = "sample_image";
+				a.src = "data:image/png;base64,"+$.scriptcam.getFrameAsBase64();
+				$.ajax({
+					type:"POST",
+					url: "store.php",
+					data: new FormData(a),
+					processData: false, // Don't process the files
+        contentType: false,
+					success: function(data) {
+						alert("success");
+					}
+				});
+			}
+			
 		</script>
 	</head>
 	
@@ -73,7 +93,7 @@
 				<select id="cameraNames" size="1" onChange="changeCamera()" style="width:245px;font-size:10px;height:25px;">
 				</select>
 			</div>
-            <p><button class="btn btn-small" id="btn2" onclick="base64_toimage()">Snapshot to image</button></p>
+            <p><button class="btn btn-small" id="btn2" onclick="upload()">Snapshot to Upload</button></p>
 		</div>
 	</body>
 </html>

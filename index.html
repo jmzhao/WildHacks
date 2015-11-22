@@ -7,14 +7,21 @@
     <title>Foundation | Welcome</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
-    <link rel="stylesheet" href="css/app.css" />
+    <style>
+		#map {
+			width: 500px;
+			height: 400px;
+			margin:0 auto;
+		}
+	</style>
   </head>
-  <body>
+  
+  <body  onload="initialize()">
 
     <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-       <h1><a href="#">Freemium</a></h1>
+       <h1><a href="/">Freemium</a></h1>
     </li>
   </ul>
 
@@ -22,18 +29,19 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <li class="has-form">
-  <a href="#" class="button success" >Get Blessed</a>
+  <a href="/" class="button success" >Get Blessed</a>
 </li>
      <li class="has-form">
-  <a href="#" class="button " >Share !!</a>
+  <a href="share.php" class="button " >Share !!</a>
 </li>
     </ul>
 
   </section>
 </nav>
+<br><br>
 
     <div class="row">
-        <hr />
+        
         <form>
           <div class="row">
           <div class="large-6 columns">
@@ -47,8 +55,127 @@
           </div>
         </form>
       </div>
+      
+      <div id="map">
+      </div>
 
-    </div>
+<hr>
+
+<script>
+  var geocoder;
+  var map;
+  function initialize() {
+	$.ajaxSetup({
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+			xhr.setRequestHeader("api-key", "3B3CABA50386E2B6502A4A8D95328417");
+		}
+	});
+	  initMap();
+  }
+
+  function searchLocation(pos) {
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://free-mium.search.windows.net/indexes/events/docs?api-version=2015-02-28&search=*&%24filter=time_start%20ge%201448186636",
+  "method": "GET",
+  "headers": {
+    "api-key": "3B3CABA50386E2B6502A4A8D95328417",
+    "content-type": "application/json; charset=utf-8",
+    "cache-control": "no-cache",
+    "postman-token": "f92c1e26-9ce1-f6f9-6026-f846ec87d04f"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  drawMap($("#map"), response);
+});
+  }
+  
+  function drawMap(map, retData) {
+	  if (retData.value.length == 0) return ;
+	  
+	  var bestEvent = retData.value[0];
+	  map.setCenter(location2pos(bestEvent.location));
+	  
+	  for (event in retData.value) {
+			marker = new google.maps.Marker({
+				map: map,
+				draggable: true,
+				animation: google.maps.Animation.DROP,
+				position: location2pos(event.location)
+			});
+			marker.addListener('click', toggleBounce);
+	  }
+  }
+  
+  
+function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+  
+  function location2pos(location) {
+	  return {
+		  lat: location.coordinates[0],
+		  lng: location.coordinates[1]
+	  };
+  }
+</script>
+
+<script>
+		function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+		  infoWindow.setPosition(pos);
+		  infoWindow.setContent(browserHasGeolocation ?
+		                        'Error: The Geolocation service failed.' :
+		                        'Error: Your browser doesn\'t support geolocation.');
+		}
+
+		function getCurrentPosition (map) {
+			var currentPosition = {};
+				// Try HTML5 geolocation.
+				var infoWindow = new google.maps.InfoWindow({map: map});
+		  if (navigator.geolocation) {
+		  	navigator.geolocation.getCurrentPosition(function(position) {
+		  		 currentPosition = {
+		  			lat: position.coords.latitude,
+		  			lng: position.coords.longitude
+		  		};
+				infoWindow.setPosition(currentPosition);
+      	infoWindow.setContent('Your Location.');
+				map.setCenter(currentPosition);
+		  		
+		  	}, function() {
+		  		handleLocationError(true, infoWindow, map.getCenter());
+		  	});
+		  } else {
+		    // Browser doesn't support Geolocation
+		    handleLocationError(false, infoWindow, map.getCenter());
+		  }
+		  return currentPosition;
+		}
+
+		function initMap() {
+			var mapCanvas = document.getElementById('map');
+			var mapOptions = {
+				center: new google.maps.LatLng(0,0),
+				zoom: 12,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				zoomControl: true,
+				mapTypeControl: true,
+				scaleControl: true,
+				streetViewControl: true,
+				rotateControl: true
+			};
+			var map = new google.maps.Map(mapCanvas, mapOptions);
+			var pos = getCurrentPosition(map);
+			searchLocation(pos);
+	}
+</script>
 
     <script>
 // This example displays an address form, using the autocomplete feature
