@@ -83,15 +83,21 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response) {
-  drawMap($("#map"), response);
+  drawMap( response);
 });
   }
   
-  function drawMap(map, retData) {
+  function drawMap(retData) {
 	  if (retData.value.length == 0) return ;
+	  console.log(retData);
 	  
 	  var bestEvent = retData.value[0];
-	  map.setCenter(location2pos(bestEvent.location));
+	  console.log(bestEvent.location.coordinates);
+	  if (map) {
+            //map.checkResize();
+			var pos = location2pos(bestEvent.location.coordinates);
+            map.panTo(new google.maps.LatLng(pos.lat,pos.lng));
+	  //map.setCenter(location2pos(bestEvent.location));
 	  
 	  for (event in retData.value) {
 			marker = new google.maps.Marker({
@@ -101,6 +107,10 @@ $.ajax(settings).done(function (response) {
 				position: location2pos(event.location)
 			});
 			marker.addListener('click', toggleBounce);
+	  }
+	  }
+	  else {
+		  console.log("map not found");
 	  }
   }
   
@@ -113,15 +123,13 @@ function toggleBounce() {
   }
 }
   
-  function location2pos(location) {
+  function location2pos(coordinates) {
 	  return {
-		  lat: location.coordinates[0],
-		  lng: location.coordinates[1]
+		  lat: coordinates[0],
+		  lng: coordinates[1]
 	  };
   }
-</script>
-
-<script>
+  
 		function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		  infoWindow.setPosition(pos);
 		  infoWindow.setContent(browserHasGeolocation ?
@@ -165,13 +173,11 @@ function toggleBounce() {
 				streetViewControl: true,
 				rotateControl: true
 			};
-			var map = new google.maps.Map(mapCanvas, mapOptions);
+			map = new google.maps.Map(mapCanvas, mapOptions); //global map
 			var pos = getCurrentPosition(map);
 			searchLocation(pos);
 	}
-</script>
-
-    <script>
+	
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
