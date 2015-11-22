@@ -67,6 +67,7 @@
       </div>
       <div class="large-6 columns">
       <input id="fileupload" type="file" name="files[]" data-url="store.php" multiple>
+      <a href="/" class="button success" onclick="upload">Upload</a>
       </div>  
     </div>
 </div>
@@ -99,7 +100,7 @@
 //   e.preventDefault();
 //   return false;
 //   }
-$(function () {
+function upload(){
     $('#fileupload').fileupload({
         dataType: 'json',
         done: function (e, data) {
@@ -108,7 +109,7 @@ $(function () {
             });
         }
     });
-});
+}
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
