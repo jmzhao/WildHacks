@@ -67,13 +67,14 @@
       </div>
       <div class="large-6 columns">
       <input id="fileupload" type="file" name="files[]" data-url="store.php" multiple>
-      <input type="button" class="button success" onclick="upload" value="Upload">
+      <input type="button" class="button success" onClick="upload()" value="Upload">
       </div>  
     </div>
 </div>
 
 </div>
 <hr />
+
 <script type="text/javascript">
 // function JSON() {
 //   json = {};
@@ -162,6 +163,9 @@ function geolocate() {
 <script src="js/foundation.min.js"></script>
 <script src="js/foundation/foundation.topbar.js"></script>
 <script src="js/foundation/foundation-datepicker.min.js"></script>
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<script src="js/jquery.iframe-transport.js"></script>
+<script src="js/jquery.fileupload.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1MgYE-d_EX4Jq0b-D-eB2px1NTQxYXW0&signed_in=true&libraries=places&callback=initAutocomplete"
 async defer></script>
 <script>
