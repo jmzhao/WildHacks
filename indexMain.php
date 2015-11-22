@@ -52,8 +52,8 @@
         </form>
         -->
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="">SEARCH</a></li>
-          <li><a href="forms/userInput1.php">ADD</a></li>
+          <li><a href="" id="white">SEARCH</a></li>
+          <li><a href="forms/photoUpload.php" id="white">ADD</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
