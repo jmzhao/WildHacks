@@ -2,10 +2,13 @@
 <html>
 
 	<head>
-		<script language="JavaScript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script language="JavaScript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-		<script language="JavaScript" src="javascript/scriptcam/scriptcam.js"></script>
-		<script language="JavaScript"> 
+	<script type="text/javascript"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+		<script type="text/javascript" src="javascript/scriptcam/scriptcam.js"></script>
+		<script type="text/javascript" src="javascript/FileSaver.js"></script>
+		<script type="text/javascript" src="javascript/Blob.js"></script>
+		<script type="text/javascript"> 
 			$(document).ready(function() {
 				$("#webcam").scriptcam({
 					showMicrophoneErrors:false,
@@ -56,10 +59,12 @@
 			}
 			function upload() {
 				alert("coming in upload");
+				var a = document.createElement('img');
+				a.src = "data:image/png;base64,"+$.scriptcam.getFrameAsBase64();
 				$.ajax({
 					type:"POST",
 					url: "store.php",
-					data: "data:image/png;base64,"+$.scriptcam.getFrameAsBase64(),
+					data: new FormData(a),
 					processData: false, // Don't process the files
         contentType: false,
 					success: function(data) {
@@ -67,9 +72,7 @@
 					}
 				});
 			}
-			function save() {
-
-			}
+			
 		</script>
 	</head>
 	
