@@ -55,17 +55,20 @@
 				return text;
 			}
 			function upload() {
-				var files = new FormData();
-				files.append("xxxxxxxxxxx","data:image/png;base64,"+$.scriptcam.getFrameAsBase64());
 				alert("coming in upload");
 				$.ajax({
 					type:"POST",
 					url: "store.php",
-					data: files,
+					data: "data:image/png;base64,"+$.scriptcam.getFrameAsBase64(),
+					processData: false, // Don't process the files
+        contentType: false,
 					success: function(data) {
 						alert("success");
 					}
 				});
+			}
+			function save() {
+
 			}
 		</script>
 	</head>
