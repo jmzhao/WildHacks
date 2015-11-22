@@ -97,8 +97,8 @@
 			for (var key in opts) {
 				opts[key] = encodeURIComponent(opts[key]);
 			};
-			if (fileExists(decodeURIComponent(data.path)+'scriptcam.swf')) {
-				swfobject.embedSWF(decodeURIComponent(data.path)+'scriptcam.swf', opts.id, newWidth, newHeight, '11.6', false, opts, params);
+			if (fileExists(decodeURIComponent(data.path)+'javascript/scriptcam/scriptcam.swf')) {
+				swfobject.embedSWF(decodeURIComponent(data.path)+'javascript/scriptcam/scriptcam.swf', opts.id, newWidth, newHeight, '11.6', false, opts, params);
 			}
 			else {
 				alert(decodeURIComponent(data.path)+'scriptcam.swf not found, please check the path parameter');
