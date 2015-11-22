@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
+    <title>Free-mium | Welcome</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
     <style>
@@ -21,7 +21,7 @@
     <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
-       <h1><a href="/">Freemium</a></h1>
+       <h1><a href="/">Free-mium</a></h1>
     </li>
   </ul>
 
@@ -78,7 +78,7 @@
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://free-mium.search.windows.net/indexes/events/docs?api-version=2015-02-28&search=*&%24filter=time_start%20ge%201448186636",
+  "url": "https://free-mium.search.windows.net/indexes/events/docs?api-version=2015-02-28&search=*&$filter=geo.distance(location, geography'POINT(" + pos.lat + " " + pos.lng + ")')+le+1",
   "method": "GET",
   "headers": {
     "api-key": "3B3CABA50386E2B6502A4A8D95328417",
