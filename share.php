@@ -69,7 +69,7 @@
       <form method="post" action="store.php" id="fileform" enctype="multipart/form-data">
           <input type="file" name="photo" id="image" /><br>
           <input type="hidden" name="filename" value="makeid()" />
-          <input type="button" class="button success" value="Upload" onclick="submit()" />
+          <input type="submit" class="button success" value="Upload" onsubmit="submit()" />
           </form>
       </div>  
     </div>
