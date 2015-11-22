@@ -66,52 +66,38 @@
         <input type="text"  name="notes" id="notes" placeholder="Down the hallway next to the lounge" />
       </div>
       <div class="large-6 columns">
-      <input id="fileupload" type="file" name="files[]" data-url="store.php" multiple>
-      <input type="button" class="button success" onClick="upload()" value="Upload">
+      <form id="my_form" name="form" action="store.php" method="POST" enctype="multipart/form-data" >
+ 
+<div id="main">
+<input name="my_files" id="my_file" size="27" type="file" />
+<input type="button" name="action" value="Upload" onclick="redirect()"/>
+<iframe id='my_iframe' name='my_iframe' src="">
+</iframe>
+</div>
+ 
+</form>
       </div>  
     </div>
 </div>
 
 </div>
 <hr />
+<script src="js/vendor/jquery.js"></script>
+<script src="js/foundation.min.js"></script>
+<script src="js/foundation/foundation.topbar.js"></script>
+<script src="js/foundation/foundation-datepicker.min.js"></script>
 
 <script type="text/javascript">
-// function JSON() {
-//   json = {};
-//   return json;
-// }
-//   function submit(e){
-//     alert("coming in");
-//         var filename = $("#image").val();
-
-//         $.ajax({
-//             type: "POST",
-//             url: "store.php",
-//             enctype: 'multipart/form-data',
-//             data: {
-//                 file: filename
-//             },
-//             success: function () {
-//                 alert("Data Uploaded: ");
-//             },
-//             error: function (e) {
-//                 alert(e);
-//             }
-//         });
-//   e.preventDefault();
-//   return false;
-//   }
-function upload(){
-  alert("coming in");
-    $('#fileupload').fileupload({
-        dataType: 'json',
-        done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
-                alert(file.name);
-            });
-        }
-    });
+function JSON() {
+  json = {};
+  return json;
 }
+  function redirect()
+{
+document.getElementById('my_form').target = 'my_iframe'; //'my_iframe' is the name of the iframe
+document.getElementById('my_form').submit();
+}
+
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
@@ -159,13 +145,6 @@ function geolocate() {
 
 
 </script>
-<script src="js/vendor/jquery.js"></script>
-<script src="js/foundation.min.js"></script>
-<script src="js/foundation/foundation.topbar.js"></script>
-<script src="js/foundation/foundation-datepicker.min.js"></script>
-<script src="js/vendor/jquery.ui.widget.js"></script>
-<script src="js/jquery.iframe-transport.js"></script>
-<script src="js/jquery.fileupload.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1MgYE-d_EX4Jq0b-D-eB2px1NTQxYXW0&signed_in=true&libraries=places&callback=initAutocomplete"
 async defer></script>
 <script>
