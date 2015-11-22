@@ -34,7 +34,6 @@
 </nav>
 <br><br>
 <div class="row">
-  <form action="store.php" method="post" enctype="multipart/form-data">
     <div class="row">
       <div class="large-6 columns">
         <label>Whats you are interested in sharing today</label>
@@ -67,18 +66,52 @@
         <input type="text"  name="notes" id="notes" placeholder="Down the hallway next to the lounge" />
       </div>
       <div class="large-6 columns">
-          <input type="file" name="photo" id="image" /><br>
-          <input type="hidden" name="filename" value="makeid()" />
-          <input type="submit" onclick="post" />
+      <input id="fileupload" type="file" name="files[]" data-url="store.php" multiple>
+      <input type="button" class="button success" onClick="upload()" value="Upload">
       </div>  
     </div>
-
-  </form>
 </div>
 
 </div>
 <hr />
-<script>
+
+<script type="text/javascript">
+// function JSON() {
+//   json = {};
+//   return json;
+// }
+//   function submit(e){
+//     alert("coming in");
+//         var filename = $("#image").val();
+
+//         $.ajax({
+//             type: "POST",
+//             url: "store.php",
+//             enctype: 'multipart/form-data',
+//             data: {
+//                 file: filename
+//             },
+//             success: function () {
+//                 alert("Data Uploaded: ");
+//             },
+//             error: function (e) {
+//                 alert(e);
+//             }
+//         });
+//   e.preventDefault();
+//   return false;
+//   }
+function upload(){
+  alert("coming in");
+    $('#fileupload').fileupload({
+        dataType: 'json',
+        done: function (e, data) {
+            $.each(data.result.files, function (index, file) {
+                alert(file.name);
+            });
+        }
+    });
+}
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
@@ -130,6 +163,9 @@ function geolocate() {
 <script src="js/foundation.min.js"></script>
 <script src="js/foundation/foundation.topbar.js"></script>
 <script src="js/foundation/foundation-datepicker.min.js"></script>
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<script src="js/jquery.iframe-transport.js"></script>
+<script src="js/jquery.fileupload.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1MgYE-d_EX4Jq0b-D-eB2px1NTQxYXW0&signed_in=true&libraries=places&callback=initAutocomplete"
 async defer></script>
 <script>
