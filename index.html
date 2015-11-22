@@ -65,14 +65,27 @@
   var geocoder;
   var map;
   function initialize() {
+	$.ajaxSetup({
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+			xhr.setRequestHeader("api-key", "3B3CABA50386E2B6502A4A8D95328417");
+		}
+	});
 	  initMap();
   }
 
   function searchLocation(pos) {
         $.ajax({
-            type: "GET",
-            url: "https://free-mium.search.windows.net/indexes/events/docs?api-version=2015-02-28&search=*&$filter=geo.distance(location, geography'POINT(" + pos.lat + " " + pos.lng + ")')+le+1",
-            success: function (data) {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://free-mium.search.windows.net/indexes/events/docs?api-version=2015-02-28&search=*&$filter=geo.distance(location, geography'POINT(" + pos.lat + " " + pos.lng + ")')+le+1",
+			"method": "GET",
+			"headers": {
+				"api-key": "3B3CABA50386E2B6502A4A8D95328417",
+				"content-type": "application/json; charset=utf-8",
+				"cache-control": "no-cache"
+			},
+            "success": function (data) {
 				if (data.value.length == 0) {
 					//alert("no event found"); // todo: hope for better presentation
 				} 
@@ -118,36 +131,41 @@ function toggleBounce() {
 </script>
 
 <script>
-		function handleLocationError(browserHasGeolocation) {
-		  alert(browserHasGeolocation ?
+		function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+		  infoWindow.setPosition(pos);
+		  infoWindow.setContent(browserHasGeolocation ?
 		                        'Error: The Geolocation service failed.' :
 		                        'Error: Your browser doesn\'t support geolocation.');
 		}
 
-		function getCurrentPosition () {
+		function getCurrentPosition (map) {
 			var currentPosition = {};
 				// Try HTML5 geolocation.
+				var infoWindow = new google.maps.InfoWindow({map: map});
 		  if (navigator.geolocation) {
 		  	navigator.geolocation.getCurrentPosition(function(position) {
 		  		 currentPosition = {
 		  			lat: position.coords.latitude,
 		  			lng: position.coords.longitude
 		  		};
+				infoWindow.setPosition(currentPosition);
+      	infoWindow.setContent('Your Location.');
+				map.setCenter(currentPosition);
+		  		
 		  	}, function() {
-		  		handleLocationError(true);
+		  		handleLocationError(true, infoWindow, map.getCenter());
 		  	});
 		  } else {
 		    // Browser doesn't support Geolocation
-		    handleLocationError(false);
+		    handleLocationError(false, infoWindow, map.getCenter());
 		  }
 		  return currentPosition;
 		}
 
 		function initMap() {
-			var pos = getCurrentPosition();
 			var mapCanvas = document.getElementById('map');
 			var mapOptions = {
-				center: pos,
+				center: new google.maps.LatLng(0,0),
 				zoom: 12,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
 				zoomControl: true,
@@ -157,7 +175,8 @@ function toggleBounce() {
 				rotateControl: true
 			};
 			var map = new google.maps.Map(mapCanvas, mapOptions);
-			//searchLocation(pos);
+			var pos = getCurrentPosition(map);
+			searchLocation(pos);
 	}
 </script>
 
@@ -214,9 +233,6 @@ function geolocate() {
     <script src="js/foundation/foundation.topbar.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1MgYE-d_EX4Jq0b-D-eB2px1NTQxYXW0&signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
-<script async defer
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1MgYE-d_EX4Jq0b-D-eB2px1NTQxYXW0&callback=initMap">
-</script>
 <script>
       $(document).foundation();
     </script>
