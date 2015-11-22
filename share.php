@@ -1,82 +1,84 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <link rel="stylesheet" href="css/foundation-datepicker.min.css" />
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <script src="js/vendor/modernizr.js"></script>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foundation | Welcome</title>
+  <link rel="stylesheet" href="css/foundation.css" />
+  <link rel="stylesheet" href="css/foundation-datepicker.min.css" />
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <script src="js/vendor/modernizr.js"></script>
+</head>
+<body>
 
-    <nav class="top-bar" data-topbar>
-  <ul class="title-area">
-    <li class="name">
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name">
        <h1><a href="/">Freemium</a></h1>
-    </li>
-  </ul>
+     </li>
+   </ul>
 
-  <section class="top-bar-section">
+   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
       <li class="has-form">
-  <a href="/" class="button success" >Get Blessed</a>
-</li>
-     <li class="has-form">
-  <a href="/share.php" class="button " >Share !!</a>
-</li>
+        <a href="/" class="button success" >Get Blessed</a>
+      </li>
+      <li class="has-form">
+        <a href="/share.php" class="button " >Share !!</a>
+      </li>
     </ul>
 
   </section>
 </nav>
 <br><br>
+<div class="row">
+  <form action="store.php" method="post" enctype="multipart/form-data">
     <div class="row">
-        <form>
-          <div class="row">
-            <div class="large-6 columns">
-              <label>Whats you are interested today</label>
-              <input type="text" id="search" placeholder="Search Keywords" />
-            </div>
-            <div class="large-6 columns">
-            <label>Search for a address</label>
-              <input type="text" id="autocomplete" onFocus="geolocate()" placeholder="Its intelligent try it!" />
-          </div>
-          </div>
-
-          <div class="row">
-          <div class="large-3 columns">
-          <label>StartTime</label>
-          <input type="text" class="span2" value="11-21-2015 21:05" id="dpts">
-          </div>
-          <div class="large-3 columns">
-          <label>EndTime</label>
-          <input type="text" class="span2" value="11-21-2015 21:05" id="dpte">
-          </div>
-            <div class="large-6 columns">
-          <label>Description</label>
-          <input type="text" id="description" placeholder="Say something about your offer" />
-          </div>
-          </div>
-
-          <div class="row">
-          <div class="large-6 columns">
-          <label>Additional Notes</label>
-          <input type="text" id="notes" placeholder="Down the hallway next to the lounge" />
-          </div>
-            <div class="large-6 columns">
-          &nbsp;
-          </div>  
-          </div>
-
-        </form>
+      <div class="large-6 columns">
+        <label>Whats you are interested in sharing today</label>
+        <input type="text" id="search" name="search" placeholder="Search Keywords" />
       </div>
-
+      <div class="large-6 columns">
+        <label>Location its being offered</label>
+        <input type="text" id="autocomplete" name="autocomplete" onFocus="geolocate()" placeholder="Its intelligent try it!" />
+      </div>
     </div>
-    <hr />
-    <script>
+
+    <div class="row">
+      <div class="large-3 columns">
+        <label>StartTime</label>
+        <input type="text" class="span2"  value="11-21-2015 21:05" id="dpts" name="dpts">
+      </div>
+      <div class="large-3 columns">
+        <label>EndTime</label>
+        <input type="text" class="span2" value="11-21-2015 21:05" id="dpte" name="dpte">
+      </div>
+      <div class="large-6 columns">
+        <label>Description</label>
+        <input type="text" name="description" id="description" placeholder="Say something about your offer" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <label>Additional Notes</label>
+        <input type="text"  name="notes" id="notes" placeholder="Down the hallway next to the lounge" />
+      </div>
+      <div class="large-6 columns">
+          <input type="file" name="photo" id="image" /><br>
+          <input type="hidden" name="filename" value="makeid()" />
+          <input type="submit" onclick="post" />
+      </div>  
+    </div>
+
+  </form>
+</div>
+
+</div>
+<hr />
+<script>
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
@@ -86,8 +88,8 @@ function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
   // location types.
   autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-      {types: ['geocode']});
+    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+    {types: ['geocode']});
 
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
@@ -123,28 +125,28 @@ function geolocate() {
 // [END region_geolocation]
 
 
-    </script>
+</script>
 <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/foundation/foundation.topbar.js"></script>
-    <script src="js/foundation/foundation-datepicker.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1MgYE-d_EX4Jq0b-D-eB2px1NTQxYXW0&signed_in=true&libraries=places&callback=initAutocomplete"
-        async defer></script>
+<script src="js/foundation.min.js"></script>
+<script src="js/foundation/foundation.topbar.js"></script>
+<script src="js/foundation/foundation-datepicker.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1MgYE-d_EX4Jq0b-D-eB2px1NTQxYXW0&signed_in=true&libraries=places&callback=initAutocomplete"
+async defer></script>
 <script>
-      $(document).foundation();
-      $('#dpts').fdatepicker({
-          format: 'mm-dd-yyyy hh:ii',
-          disableDblClickSelection: true,
-          language: 'vi',
-          pickTime: true
-        });
-      $('#dpte').fdatepicker({
-          format: 'mm-dd-yyyy hh:ii',
-          disableDblClickSelection: true,
-          language: 'vi',
-          pickTime: true
-        });
-    </script>
+  $(document).foundation();
+  $('#dpts').fdatepicker({
+    format: 'mm-dd-yyyy hh:ii',
+    disableDblClickSelection: true,
+    language: 'vi',
+    pickTime: true
+  });
+  $('#dpte').fdatepicker({
+    format: 'mm-dd-yyyy hh:ii',
+    disableDblClickSelection: true,
+    language: 'vi',
+    pickTime: true
+  });
+</script>
 
-  </body>
+</body>
 </html>
