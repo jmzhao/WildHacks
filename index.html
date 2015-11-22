@@ -118,14 +118,13 @@ function toggleBounce() {
 </script>
 
 <script>
-		function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-		  infoWindow.setPosition(pos);
-		  infoWindow.setContent(browserHasGeolocation ?
+		function handleLocationError(browserHasGeolocation) {
+		  alert(browserHasGeolocation ?
 		                        'Error: The Geolocation service failed.' :
 		                        'Error: Your browser doesn\'t support geolocation.');
 		}
 
-		function getCurrentPosition (map) {
+		function getCurrentPosition () {
 			var currentPosition = {};
 				// Try HTML5 geolocation.
 		  if (navigator.geolocation) {
@@ -134,26 +133,22 @@ function toggleBounce() {
 		  			lat: position.coords.latitude,
 		  			lng: position.coords.longitude
 		  		};
-				var infoWindow = new google.maps.InfoWindow({map: map});
-				infoWindow.setPosition(currentPosition);
-      	infoWindow.setContent('Your Location.');
-				map.setCenter(currentPosition);
-		  		
 		  	}, function() {
-		  		handleLocationError(true, infoWindow, map.getCenter());
+		  		handleLocationError(true);
 		  	});
 		  } else {
 		    // Browser doesn't support Geolocation
-		    handleLocationError(false, infoWindow, map.getCenter());
+		    handleLocationError(false);
 		  }
 		  return currentPosition;
 		}
 
 		function initMap() {
+			var pos = getCurrentPosition();
 			var mapCanvas = document.getElementById('map');
 			var mapOptions = {
-				center: new google.maps.LatLng(0,0),
-				zoom: 8,
+				center: pos,
+				zoom: 12,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
 				zoomControl: true,
 				mapTypeControl: true,
@@ -162,7 +157,7 @@ function toggleBounce() {
 				rotateControl: true
 			};
 			var map = new google.maps.Map(mapCanvas, mapOptions);
-			getCurrentPosition(map);
+			searchLocation(pos);
 	}
 </script>
 
