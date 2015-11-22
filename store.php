@@ -19,7 +19,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=freemiumphoto;Ac
 $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
 
 $content = fopen($_FILES["photo"]["tmp_name"],'r');
-$blob_name = time().'_'.uniqid('free-mium', true);
+$blob_name = time().'_'.uniqid('free-mium', true).'_'.$_FILES["photo"]["name"];
 
 try {
     //Upload blob
