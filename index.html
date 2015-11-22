@@ -75,25 +75,22 @@
   }
 
   function searchLocation(pos) {
-        $.ajax({
-			"async": true,
-			"crossDomain": true,
-			"url": "https://free-mium.search.windows.net/indexes/events/docs?api-version=2015-02-28&search=*&$filter=geo.distance(location, geography'POINT(" + pos.lat + " " + pos.lng + ")')+le+1",
-			"method": "GET",
-			"headers": {
-				"api-key": "3B3CABA50386E2B6502A4A8D95328417",
-				"content-type": "application/json; charset=utf-8",
-				"cache-control": "no-cache"
-			},
-            "success": function (data) {
-				if (data.value.length == 0) {
-					//alert("no event found"); // todo: hope for better presentation
-				} 
-				else {
-					drawMap(data);
-				}
-			}
-        });
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://free-mium.search.windows.net/indexes/events/docs?api-version=2015-02-28&search=*&%24filter=time_start%20ge%201448186636",
+  "method": "GET",
+  "headers": {
+    "api-key": "3B3CABA50386E2B6502A4A8D95328417",
+    "content-type": "application/json; charset=utf-8",
+    "cache-control": "no-cache",
+    "postman-token": "f92c1e26-9ce1-f6f9-6026-f846ec87d04f"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  drawMap($("#map"), response);
+});
   }
   
   function drawMap(map, retData) {
