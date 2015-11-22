@@ -66,11 +66,7 @@
         <input type="text"  name="notes" id="notes" placeholder="Down the hallway next to the lounge" />
       </div>
       <div class="large-6 columns">
-      <form method="post" action="store.php" id="fileform" enctype="multipart/form-data">
-          <input type="file" name="photo" id="image" /><br>
-          <input type="hidden" name="filename" value="makeid()" />
-          <input type="submit" class="button success" value="Upload" onsubmit="submit()" />
-          </form>
+      <input id="fileupload" type="file" name="files[]" data-url="store.php" multiple>
       </div>  
     </div>
 </div>
@@ -78,32 +74,41 @@
 </div>
 <hr />
 <script type="text/javascript">
-function JSON() {
-  json = {};
-  return json;
-}
-  function submit(e){
-    alert("coming in");
-        var filename = $("#image").val();
+// function JSON() {
+//   json = {};
+//   return json;
+// }
+//   function submit(e){
+//     alert("coming in");
+//         var filename = $("#image").val();
 
-        $.ajax({
-            type: "POST",
-            url: "store.php",
-            enctype: 'multipart/form-data',
-            data: {
-                file: filename
-            },
-            success: function () {
-                alert("Data Uploaded: ");
-            },
-            error: function (e) {
-                alert(e);
-            }
-        });
-  e.preventDefault();
-  return false;
-  }
-
+//         $.ajax({
+//             type: "POST",
+//             url: "store.php",
+//             enctype: 'multipart/form-data',
+//             data: {
+//                 file: filename
+//             },
+//             success: function () {
+//                 alert("Data Uploaded: ");
+//             },
+//             error: function (e) {
+//                 alert(e);
+//             }
+//         });
+//   e.preventDefault();
+//   return false;
+//   }
+$(function () {
+    $('#fileupload').fileupload({
+        dataType: 'json',
+        done: function (e, data) {
+            $.each(data.result.files, function (index, file) {
+                alert(file.name);
+            });
+        }
+    });
+});
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
