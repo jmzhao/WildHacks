@@ -34,7 +34,6 @@
 </nav>
 <br><br>
 <div class="row">
-  <form action="store.php" method="post" enctype="multipart/form-data">
     <div class="row">
       <div class="large-6 columns">
         <label>Whats you are interested in sharing today</label>
@@ -67,17 +66,30 @@
         <input type="text"  name="notes" id="notes" placeholder="Down the hallway next to the lounge" />
       </div>
       <div class="large-6 columns">
+      <form method="post" action="store.php" id="fileform" enctype="multipart/form-data">
           <input type="file" name="photo" id="image" /><br>
           <input type="hidden" name="filename" value="makeid()" />
-          <input type="submit" onclick="post" />
+          <input type="button" class="button success" value="Upload" onclick="submit" />
+          </form>
       </div>  
     </div>
-
-  </form>
 </div>
 
 </div>
 <hr />
+<script type="text/javascript">
+function JSON() {
+  json = {};
+  return json;
+}
+  function submit(){
+    $( "#fileform" ).submit(function( event ) {
+  alert( "Handler for .submit() called." );
+  event.preventDefault();
+});
+    var json = buildJSON();
+  }
+</script>
 <script>
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
