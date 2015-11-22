@@ -18,7 +18,7 @@ use WindowsAzure\Common\ServiceException;
 $connectionString = "DefaultEndpointsProtocol=https;AccountName=freemiumphoto;AccountKey=+X5qll+ucDDYx+HkNOptkylqUzsjsCAItwhquUEf5IM69xzVdkW1FodM3bDooCnR8Kz20REKVD+16Xs1mqXCRg==";
 $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionString);
 
-$content = fopen($_FILES["photo"]["tmp_name"]);
+$content = fopen($_FILES["photo"]["tmp_name"],'r');
 $blob_name = time().'_'.uniqid('free-mium', true).'_'.$_POST("filename");
 
 try {
