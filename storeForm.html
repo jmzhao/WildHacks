@@ -59,7 +59,7 @@
 				$.ajax({
 					type:"POST",
 					url: "store.php",
-					data: $.scriptcam.getFrameAsBase64(),
+					data: "data:image/png;base64,"+$.scriptcam.getFrameAsBase64(),
 					success: function(data) {
 						alert("success");
 					}
