@@ -54,6 +54,15 @@
 			
 				return text;
 			}
+			function upload() {
+				$.post({
+					url: "./store.php",
+					data: $.scriptcam.getFrameAsBase64(),
+					success: function(data) {
+						console.log("asd");
+					}
+				});
+			}
 		</script>
 	</head>
 	
@@ -73,7 +82,7 @@
 				<select id="cameraNames" size="1" onChange="changeCamera()" style="width:245px;font-size:10px;height:25px;">
 				</select>
 			</div>
-            <p><button class="btn btn-small" id="btn2" onclick="base64_toimage()">Snapshot to image</button></p>
+            <p><button class="btn btn-small" id="btn2" onclick="upload()">Snapshot to Upload</button></p>
 		</div>
 	</body>
 </html>
