@@ -55,11 +55,13 @@
 				return text;
 			}
 			function upload() {
-				$.post({
-					url: "./store.php",
+				alert("coming in upload");
+				$.ajax({
+					type:"POST",
+					url: "store.php",
 					data: $.scriptcam.getFrameAsBase64(),
 					success: function(data) {
-						console.log("asd");
+						alert("success");
 					}
 				});
 			}
