@@ -46,20 +46,6 @@ catch(ServiceException $e){
     echo $code.": ".$error_message."<br />";
 }
 
-$data= array(
-    "@search.action"=> "upload",
-    "search" =>  $_POST["search"];
-"dpts" =>  $_POST["dpts"];
-"dpte" =>  $_POST["dpte"];
-"description" =>  $_POST["description"];
-"address_notes" =>  $_POST["notes"];
-"picture_urls" => array("https://freemiumphoto.blob.core.windows.net/mycontainer/" + $blob_name);
-
-    )
-
-
-
-
 // try {
 //     // List blobs.
 //     $blob_list = $blobRestProxy->listBlobs("mycontainer");

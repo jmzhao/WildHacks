@@ -69,7 +69,7 @@
       <form method="post" action="store.php" id="fileform" enctype="multipart/form-data">
           <input type="file" name="photo" id="image" /><br>
           <input type="hidden" name="filename" value="makeid()" />
-          <input type="button" class="button success" value="Upload" onclick="submit" />
+          <input type="button" class="button success" value="Upload" onclick="submit()" />
           </form>
       </div>  
     </div>
@@ -83,6 +83,7 @@ function JSON() {
   return json;
 }
   function submit(){
+    alert("coming in");
         var filename = $("#image").val();
 
         $.ajax({
@@ -94,9 +95,12 @@ function JSON() {
             },
             success: function () {
                 alert("Data Uploaded: ");
+            },
+            error: function (e) {
+                alert(e);
             }
         });
-  };
+  }
 
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
