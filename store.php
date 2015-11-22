@@ -13,7 +13,7 @@ $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($connectionSt
 echo $_FILES["my_files"]["name"];
 echo 'asdasdasd';
 $content = fopen($_FILES["my_files"]["tmp_name"],'r');
-$blob_name = time().'_'.uniqid('free-mium', true).'_'.$_FILES["my_files"]["name"];
+$blob_name = $_FILES["my_files"]["name"];
 
 try {
     //Upload blob

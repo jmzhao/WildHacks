@@ -67,13 +67,10 @@
       </div>
       <div class="large-6 columns">
       <form id="my_form" name="form" action="store.php" method="POST" enctype="multipart/form-data" >
- 
-<div id="main">
 <input name="my_files" id="my_file" size="27" type="file" />
 <input type="button" class="button success" name="action" value="Upload" onclick="redirect()"/>
 <iframe id='my_iframe' name='my_iframe' src="" style="display:None">
 </iframe>
-</div>
  
 </form>
       </div>  
@@ -88,14 +85,33 @@
 <script src="js/foundation/foundation-datepicker.min.js"></script>
 
 <script type="text/javascript">
+function getEpoch(t){
+  return (new Date($("#"+t).val())).getTime()/1000;
+}
+function getLatLong(address){
+      $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key=AIzaSyA1MgYE-d_EX4Jq0b-D-eB2px1NTQxYXW0");
+  }
 function JSON() {
   json = {};
+  json.value=[];
+  json.value[0]={};
+  json.value[0]["@search.action"]= "upload";
+  json.value[0]["name"]= $("#search");
+  json.value[0]["time_start"]= getEpoch("dpts");
+  json.value[0]["time_end"] = getEpoch("dpte");
+  var latlng = getLatLong($("#autocomplete").val());
+  json.value[0]["location"] = { "type": "Point", "coordinates": [latlng.lat,latlng.lng] };
+  json.value[0]["address"] = "";
+  json.value[0]["address_notes"]= $("#notes");
+  json.value[0]["description"] = $("#description");
+  json.value[0]["picture_urls"] = [];
   return json;
 }
   function redirect()
 {
 document.getElementById('my_form').target = 'my_iframe'; //'my_iframe' is the name of the iframe
 document.getElementById('my_form').submit();
+
 }
 
 // This example displays an address form, using the autocomplete feature
