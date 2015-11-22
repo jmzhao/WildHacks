@@ -12,9 +12,6 @@
         <label for="Name">Name</label>
         <input type="text" class="form-control" id="Name" placeholder="Name">
       </div>
-      <!--<div class="form-group">
-          <input id="filebutton" name="filebutton" class="input-file" type="file">
-      </div>-->
       <div class="form-group">
         <label for="ProductDescription">Product Description</label>
         <input type="text" class="form-control" id="productDescription" placeholder="Product Description">
