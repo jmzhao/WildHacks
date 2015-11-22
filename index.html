@@ -105,7 +105,7 @@ $.ajax(settings).done(function (response) {
     //var infoWindow = new google.maps.InfoWindow({map:map});
         
 		
-	  for (var i=0; i<retData.length; i++) {
+	  for (var i=0; i<retData.value.length; i++) {
 		  	var event = retData.value[i];
 	 	 	console.log(event.location.coordinates);
 			marker = new google.maps.Marker({
@@ -123,8 +123,10 @@ $.ajax(settings).done(function (response) {
             }
         })(marker, (
 		'<div class="info_content">' +
-        '<h3>London Eye</h3>' +
-        '<p>The London Eye is a giant Ferris wheel situated on the banks of the River Thames. The entire structure is 135 metres (443 ft) tall and the wheel has a diameter of 120 metres (394 ft).</p>' +        '</div>')));
+        '<h3>' + event.name + '</h3>' +
+		'<p>' + new Date(event.time_start) + '<p>' +
+		'<p>' + (event.address_notes ? event.address_notes : '') + ' / ' + event.address + '<p>' +
+        '<p style="font-size:small;">' + event.description + '</p>' +        '</div>')));
 	  }
 	  }
 	  else {
