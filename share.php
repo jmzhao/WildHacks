@@ -83,14 +83,21 @@ function JSON() {
   return json;
 }
   function submit(){
-    $( "#fileform" ).submit(function( event ) {
-  alert( "Handler for .submit() called." );
-  event.preventDefault();
-});
-    var json = buildJSON();
-  }
-</script>
-<script>
+        var filename = $("#image").val();
+
+        $.ajax({
+            type: "POST",
+            url: "store.php",
+            enctype: 'multipart/form-data',
+            data: {
+                file: filename
+            },
+            success: function () {
+                alert("Data Uploaded: ");
+            }
+        });
+  };
+
 // This example displays an address form, using the autocomplete feature
 // of the Google Places API to help users fill in the information.
 
