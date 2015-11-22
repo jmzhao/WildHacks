@@ -70,8 +70,8 @@
  
 <div id="main">
 <input name="my_files" id="my_file" size="27" type="file" />
-<input type="button" name="action" value="Upload" onclick="redirect()"/>
-<iframe id='my_iframe' name='my_iframe' src="">
+<input type="button" class="button success" name="action" value="Upload" onclick="redirect()"/>
+<iframe id='my_iframe' name='my_iframe' src="" style="display:None">
 </iframe>
 </div>
  
