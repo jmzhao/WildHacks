@@ -82,7 +82,7 @@ function JSON() {
   json = {};
   return json;
 }
-  function submit(){
+  function submit(e){
     alert("coming in");
         var filename = $("#image").val();
 
@@ -100,6 +100,8 @@ function JSON() {
                 alert(e);
             }
         });
+  e.preventDefault();
+  return false;
   }
 
 // This example displays an address form, using the autocomplete feature
