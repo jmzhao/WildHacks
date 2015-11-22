@@ -1,0 +1,17 @@
+.navbar{
+	background: #000000;
+	height: 70px;
+}
+.navbar-default .navbar-brand{
+	color: #ffffff;
+}
+
+a#white{
+	color: #ffffff;
+	padding: 15px;
+    margin-right: 20px;
+}
+
+.container-fluid{
+	padding: 10px;
+}

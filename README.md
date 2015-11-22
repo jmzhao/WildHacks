@@ -1,1 +1,1 @@
-# WildHacks
+# WildHacks - Freemium
