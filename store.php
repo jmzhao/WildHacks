@@ -9,9 +9,6 @@
 	</style>
 </head>
 <body>
-<?php
-echo "<img src=' . $_FILES["photo"]["tmp_name"] . '>";
-?>
     
 <?php 
 require_once 'vendor\autoload.php';
