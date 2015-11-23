@@ -87,22 +87,25 @@
   }
   
 function searchEvent(info) {
-	var keywords = "*";
 	if (info.keywords) {
-			keywords = info.keywords;
-	}
-	var pos = info.location;
-	if (pos) {
+		
 	}
 	else {
-			pos = getCurrentLocation(map);
+		info.keywords = "*";
 	}
-	console.log(pos,keywords)
+	if (info.location) {
+	}
+	else {
+			//info.location = getCurrentLocation(map);
+	}
+	console.log("in search: ");
+	console.log(info.location);
+	console.log(info.keywords);
 
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "https://free-mium.search.windows.net/indexes/events/docs?api-version=2015-02-28&search='+keywords+'&$filter=geo.distance(location, geography'POINT(" + pos.lat + " " + pos.lng + ")')+le+2",
+  "url": ("https://free-mium.search.windows.net/indexes/events/docs?api-version=2015-02-28&search=" + info.keywords + ( info.locaiton ? " &$filter=geo.distance(location, geography'POINT(" + info.location.lat + " " + info.location.lng + ")')+le+2" : "")),
   "method": "GET"
 }
 
@@ -236,7 +239,8 @@ function fillInAddress() {
   // Get the place details from the autocomplete object.
   place = autocomplete.getPlace();
   //console.log(place);
-  searchEvent(getCurrentInfo());
+  var info = {location: {lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}};
+  searchEvent(info);
 }
 // [END region_fillform]
 
