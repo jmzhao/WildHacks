@@ -126,10 +126,7 @@ $.ajax(settings).done(function (response) {
 			*/
 		var bounds = new google.maps.LatLngBounds();
         
-    // Display multiple markers on a map
-    //var infoWindow = new google.maps.InfoWindow({map:map});
-        
-		
+   	 // Display multiple markers on a map
 		  for (var i=0; i<retData.value.length; i++) {
 				var event = retData.value[i];
 				var gLatLng = new google.maps.LatLng(event.location.coordinates[0], event.location.coordinates[1])
@@ -142,7 +139,7 @@ $.ajax(settings).done(function (response) {
 				});
 				markers.push(marker);
 				bounds.extend(gLatLng);
-				//marker.addListener('click', toggleBounce);
+				
 				// Allow each marker to have an info window    
 			google.maps.event.addListener(marker, 'click', (
 				function(marker, infoWindowContent) {
