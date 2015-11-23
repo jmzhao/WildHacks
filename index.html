@@ -187,8 +187,8 @@ function toggleBounce() {
 		  			lat: position.coords.latitude,
 		  			lng: position.coords.longitude
 		  		};
-				//infoWindow.setPosition(currentPosition);
-      			//infoWindow.setContent('Your Location.');
+				infoWindow.setPosition(currentPosition);
+      			infoWindow.setContent('Your Location.');
 				map.setCenter(currentPosition);
 		  		
 		  	}, function() {
