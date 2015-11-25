@@ -100,11 +100,22 @@ function getLatLong(address){
       $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key=AIzaSyA1MgYE-d_EX4Jq0b-D-eB2px1NTQxYXW0");
   }
   */
+  function makeid()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
 function JSON() {
   json = {};
   json.value=[];
   json.value[0]={};
   json.value[0]["@search.action"]= "upload";
+  json.value[0]["id"]= "" + (new Date.getTime()) + makeid();
   json.value[0]["name"]= $("#search");
   json.value[0]["time_start"]= getEpoch("dpts");
   json.value[0]["time_end"] = getEpoch("dpte");
@@ -133,7 +144,7 @@ function submit() {
 		},
 	  "async": true,
 	  "crossDomain": true,
-	  "url": "https://free-mium.search.windows.net/indexes/events?api-version=2015-02-28",
+	  "url": "https://free-mium.search.windows.net/indexes/events/docs/index?api-version=2015-02-28",
 	  "method": "POST",
 	  "data": JSON(),
 	  "success": function(response) {
