@@ -95,9 +95,11 @@ function initialize() {
 function getEpoch(t){
   return (new Date($("#"+t).val())).getTime()/1000;
 }
+/*
 function getLatLong(address){
       $.get("https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key=AIzaSyA1MgYE-d_EX4Jq0b-D-eB2px1NTQxYXW0");
   }
+  */
 function JSON() {
   json = {};
   json.value=[];
@@ -106,8 +108,11 @@ function JSON() {
   json.value[0]["name"]= $("#search");
   json.value[0]["time_start"]= getEpoch("dpts");
   json.value[0]["time_end"] = getEpoch("dpte");
-  var latlng = getLatLong($("#autocomplete").val());
-  json.value[0]["location"] = { "type": "Point", "coordinates": [latlng.lat,latlng.lng] };
+  //var latlng = getLatLong($("#autocomplete").val());
+  json.value[0]["location"] = { 
+  	"type": "Point", 
+	"coordinates": [place.geometry.location.lat(), place.geometry.location.lng()]
+	};
   json.value[0]["address"] = "";
   json.value[0]["address_notes"]= $("#notes");
   json.value[0]["description"] = $("#description");
@@ -155,10 +160,11 @@ function initAutocomplete() {
   autocomplete.addListener('place_changed', fillInAddress);
 }
 
+var place;
 // [START region_fillform]
 function fillInAddress() {
   // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
+  place = autocomplete.getPlace();
   console.log(place);
 }
 // [END region_fillform]
