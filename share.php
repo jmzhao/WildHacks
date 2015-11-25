@@ -147,6 +147,7 @@ function submit() {
 	  "url": "https://free-mium.search.windows.net/indexes/events/docs/index?api-version=2015-02-28",
 	  "method": "POST",
 	  "data": JSON(),
+	  "datatype": "json",
 	  "success": function(response) {
 		  console.log(response);
 		  alert("Thanks for sharing!!");
