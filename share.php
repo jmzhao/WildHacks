@@ -10,7 +10,7 @@
   <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <script src="js/vendor/modernizr.js"></script>
 </head>
-<body>
+<body onLoad="initialize()">
 
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
@@ -76,6 +76,7 @@
       </div>  
     </div>
 </div>
+<input type="button" class="button" name="submit" value="Share!" onClick="submit()" />
 
 </div>
 <hr />
@@ -85,6 +86,14 @@
 <script src="js/foundation/foundation-datepicker.min.js"></script>
 
 <script type="text/javascript">
+function initialize() {
+	$.ajaxSetup({
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+			xhr.setRequestHeader("api-key", "3B3CABA50386E2B6502A4A8D95328417");
+		}
+	});
+}
 function getEpoch(t){
   return (new Date($("#"+t).val())).getTime()/1000;
 }
@@ -112,6 +121,19 @@ function JSON() {
 document.getElementById('my_form').target = 'my_iframe'; //'my_iframe' is the name of the iframe
 document.getElementById('my_form').submit();
 
+}
+function submit() {
+	$.ajax({
+	  "async": true,
+	  "crossDomain": true,
+	  "url": "https://free-mium.search.windows.net/indexes/events?api-version=2015-02-28",
+	  "method": "POST",
+	  "data": JSON(),
+	  "success": function(response) {
+		  console.log(response);
+		  alert("Thanks for sharing!!");
+	  }
+	});
 }
 
 // This example displays an address form, using the autocomplete feature
