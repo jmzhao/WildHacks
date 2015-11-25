@@ -37,7 +37,7 @@
     <div class="row">
       <div class="large-6 columns">
         <label>Whats you are interested in sharing today</label>
-        <input type="text" id="search" name="search" placeholder="Search Keywords" />
+        <input type="text" id="search" name="search" placeholder="Give it a catchy title!" />
       </div>
       <div class="large-6 columns">
         <label>Location its being offered</label>
@@ -75,9 +75,10 @@
 </form>
       </div>  
     </div>
+    <div class="row">
+		<input type="button" class="button" name="submit" value="Share!" onClick="submit()" />
+	</div>
 </div>
-<input type="button" class="button" name="submit" value="Share!" onClick="submit()" />
-
 </div>
 <hr />
 <script src="js/vendor/jquery.js"></script>
@@ -87,12 +88,9 @@
 
 <script type="text/javascript">
 function initialize() {
-	$.ajaxSetup({
-		beforeSend: function(xhr) {
-			xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-			xhr.setRequestHeader("api-key", "3B3CABA50386E2B6502A4A8D95328417");
-		}
-	});
+	var now = new Date();
+	$("#dpts").val(now.toString());
+	$("#dpte").val(new Date(now.getTime() + 3600).toString());
 }
 function getEpoch(t){
   return (new Date($("#"+t).val())).getTime()/1000;
@@ -124,6 +122,10 @@ document.getElementById('my_form').submit();
 }
 function submit() {
 	$.ajax({
+	  "header": {
+			"Content-Type": "application/json; charset=utf-8",
+			"api-key": "3B3CABA50386E2B6502A4A8D95328417"
+		},
 	  "async": true,
 	  "crossDomain": true,
 	  "url": "https://free-mium.search.windows.net/indexes/events?api-version=2015-02-28",
