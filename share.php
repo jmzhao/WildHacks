@@ -115,7 +115,7 @@ function JSON() {
   json.value=[];
   json.value[0]={};
   json.value[0]["@search.action"]= "upload";
-  json.value[0]["id"]= "" + (new Date.getTime()) + makeid();
+  json.value[0]["id"]= "" + (new Date().getTime()) + makeid();
   json.value[0]["name"]= $("#search");
   json.value[0]["time_start"]= getEpoch("dpts");
   json.value[0]["time_end"] = getEpoch("dpte");
